@@ -1,0 +1,8 @@
+numpy>=1.21.6,<2.0
+SQLAlchemy==1.4.46
+psycopg2-binary>=2.9.9
+PyYAML>=6.0.1
+streamlit>=1.28.1
+pandas>=1.5.0
+plotly>=5.18.0
+scipy>=1.7.3

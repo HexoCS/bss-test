@@ -1,0 +1,95 @@
+# Example Experiment Configuration
+#
+# This file defines an experiment batch that will be queued to the database.
+# Multiple workers can then execute these experiments in parallel.
+
+experiment:
+  # Problem type: SCP or RW
+  problem: SCP
+  
+  # List of problem instances to solve
+  instances:
+    - mscp41
+    - mscp42
+    - mscp43
+  
+  # Metaheuristic algorithms to use
+  metaheuristics:
+    - GWO
+    - PSO
+    - SCA
+  
+  # Machine learning algorithms to use
+  # Options: QL (Q-Learning), SA (SARSA), BQSA, MAB
+  # For non-ML: BCL, MIR
+  machine_learning:
+    - QL
+    - BQSA
+  
+  # Execution parameters
+  parameters:
+    # Number of independent runs per configuration
+    runs: 20
+    
+    # Population size
+    population: 40
+    
+    # Maximum iterations
+    max_iterations: 1000
+    
+    # Discretization schemes to test
+    # Options: 40a, 80a, ver1-ver90
+    discretization_schemes:
+      - 40a
+      - 80a
+    
+    # Reward type indices (0-7)
+    # 0: withPenalty1
+    # 1: withoutPenalty1
+    # 2: globalBest
+    # 3: rootAdaptation
+    # 4: escalatingMultiplicativeAdaptation
+    # 5: percentageImprovement
+    # 6: percentageImprovementAndDeterioration
+    # 7: percentageImprovementAndDeteriorationWithIter
+    reward_types: [5]
+    
+    # Policy type indices (0-4)
+    # 0: e-greedy
+    # 1: greedy
+    # 2: e-soft
+    # 3: softMax-rulette
+    # 4: softMax-rulette-elitist
+    policy_types: [0, 4]
+    
+    # ML-specific parameters
+    epsilon: 0.1
+    states_q: 2
+    W: 10
+    visit_all_once: true
+    ql_alpha: 0.1
+    ql_gamma: 0.4
+    ql_alpha_type: static  # static, iteration, or visits
+    beta_dis: 0.8
+    cond_backward: 10
+    
+    # MH-specific parameters
+    a_SCA: 2
+    b_WOA: 1
+    beta_HHO: 1.5
+    pa_CS: 0.25
+    alpha_CS: 1
+    beta_CS: 1.5
+    Vmax_PSO: 6
+    wMax_PSO: 0.9
+    wMin_PSO: 0.2
+    c1_PSO: 2
+    c2_PSO: 2
+  
+  # Problem-specific parameters
+  problem_params:
+    FO: min  # Optimization direction: min or max
+    lb: -10  # Lower bound for continuous solutions
+    ub: 10   # Upper bound for continuous solutions
+    repair_type: 2  # 1: Simple, 2: Complex
+    instance_dir: MSCP/  # Directory containing instance files
