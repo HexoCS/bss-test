@@ -391,10 +391,12 @@ class RW:
         # Por definir
         if FO == "C": #costoTotal
             fitness = np.multiply(costoTotal,factibilidad)
-        if FO == "E": #emisionTotal
+        elif FO == "E": #emisionTotal
             fitness = np.multiply(emisionTotal,factibilidad)
-        if FO == "C+E": #costoTotal + emisionTotal
+        elif FO == "C+E": #costoTotal + emisionTotal
             fitness = np.multiply((costoTotal +emisionTotal),factibilidad)
+        else: # Default: min (costo + emisiones)
+            fitness = np.multiply((costoTotal + emisionTotal),factibilidad)
 
         solutionsRanking = np.argsort(fitness)
         
