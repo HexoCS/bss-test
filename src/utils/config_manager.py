@@ -221,7 +221,12 @@ class ConfigManager:
     def _get_ml_params(cls, ml, ds_name, reward_idx, policy_idx, fo, params):
         """Get ML-specific parameters."""
         if ml in ["BCL", "MIR"]:
-            return None
+            # For non-ML algorithms, provide a fixed discretization scheme
+            return {
+                'discretizationsScheme': cls.DISCRETIZATION_SCHEMES.get(ds_name, []),
+                'FO': fo,
+                'beta_dis': params.get('beta_dis', 0.8)
+            }
         
         # Common ML parameters
         ml_params = {

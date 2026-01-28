@@ -1,0 +1,14 @@
+experiment:
+  problem: RW  # or RW
+  instances:
+    - mscp41
+    - mscp42
+  metaheuristics:
+    - GWO
+    - PSO
+  machine_learning:
+    - QL
+  parameters:
+    runs: 20
+    population: 40
+    max_iterations: 1000
