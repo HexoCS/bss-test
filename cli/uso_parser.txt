@@ -1,0 +1,43 @@
+# Parsear todos los experimentos, muestreando cada 10 iteraciones
+python cli/parser.py --intervalo 10
+
+# Muestrear cada 50 iteraciones (menos puntos, más rápido)
+python cli/parser.py --intervalo 50
+
+# Probar con un solo experimento
+python cli/parser.py --intervalo 10 --experimento 28662
+
+# Probar con los primeros 100 experimentos
+python cli/parser.py --intervalo 10 --limite 100
+
+# Solo verificar si todos terminaron (sin parsear)
+python cli/parser.py --verificar
+
+# Guardar una muestra en JSON para inspección (IDEA DE LA IA)
+python cli/parser.py --intervalo 10 --guardar-muestra
+
+
+ESTRUCTURA QUE RETORNA:
+
+{
+    28662: {
+        'diversidades': [
+            [0.33, 0.35, 0.31, ...],  # Diversidad 0: DimensionalHussain
+            [5.26, 5.30, 5.28, ...],  # Diversidad 1: PesosDeInercia
+            [155.0, 156.2, ...],      # Diversidad 2: LeungGaoXu
+            [0.49, 0.50, ...],        # Diversidad 3: Entropica
+            [264.01, 265.3, ...],     # Diversidad 4: Hamming
+            [1108.82, 1110.5, ...]    # Diversidad 5: MomentoDeInercia
+        ],
+        'iteraciones': [1, 10, 20, 30, ...],  # Números de iteración muestreados
+        'metadata': {
+            'algoritmo_mh': 'GWO',
+            'algoritmo_ml': 'QL',
+            'instancia': 'mscp41',
+            'fitness_final': 720.0,
+            ...
+        }
+    },
+    28663: { ... },
+    ...
+}
