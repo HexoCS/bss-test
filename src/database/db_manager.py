@@ -48,7 +48,7 @@ class DatabaseManager:
 
     def get_pending_experiment(self):
         try:
-            with self.engine.connect() as connection:
+            with self.engine.begin() as connection:
                 # Se cargan las tablas dinámicamente si es necesario
                 sql = text("""
                     UPDATE datos_ejecucion SET estado = 'ejecutando', inicio = :inicio
