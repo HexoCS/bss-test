@@ -63,6 +63,12 @@ def main():
     # Insert to database
     db = DatabaseManager()
     
+    # Test connection first
+    print("\nTesting database connection...")
+    if not db.test_connection():
+        print("❌ Cannot connect to database. Fix configuration in config/database.ini and try again.")
+        return
+    
     print("\nInserting experiments to database queue...")
     success_count = 0
     
